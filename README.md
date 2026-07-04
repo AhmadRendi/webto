@@ -1,59 +1,83 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Webto
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 🛠️ Required Version
 
-## About Laravel
+Sebelum menjalankan proyek ini, pastikan lingkungan pengembangan (development environment) Anda memenuhi spesifikasi versi berikut:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+* **PHP:** `8.4.1 (cli)` (built: Nov 21 2024 08:58:37) (NTS)
+* **Composer:** `2.8.3` (2024-11-17 13:13:04)
+* **Laravel Installer:** `5.25.3`
+* **Node.js:** `v24.15.0`
+* **MySQL:** `Ver 9.4.0` / XAMPP
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🚀 How to Run
 
-## Learning Laravel
+Ikuti langkah-langkah di bawah ini secara berurutan untuk menjalankan proyek di perangkat lokal Anda:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
+### 1. Clone Repository
+Klon repositori ini ke komputer Anda dan masuk ke direktori proyek:
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/AhmadRendi/webto.git
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 2. Install Dependency PHP
+Unduh semua dependensi PHP yang dibutuhkan aplikasi menggunakan Composer:
+```bash
+composer install
+```
 
-## Contributing
+### 3. Konfigurasi Environment File
+Salin file `.env.example` menjadi file `.env` untuk mengatur konfigurasi lokal Anda:
+```bash
+cp .env.example .env
+```
+Buka file `.env` tersebut menggunakan teks editor pilihan Anda, kemudian sesuaikan bagian konfigurasi database menjadi seperti berikut:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=webto
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 4. Generate Application Key
+Jalankan perintah ini untuk membuat *application key* unik demi keamanan *session* dan enkripsi data Laravel Anda:
+```bash
+php artisan key:generate
+```
 
-## Code of Conduct
+### 5. Install Dependency JavaScript
+Pasang semua paket *frontend library* yang dibutuhkan menggunakan Node Package Manager:
+```bash
+npm install
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 6. Jalankan MySQL / XAMPP
+Pastikan layanan **MySQL** pada XAMPP Control Panel atau database server lokal Anda sudah dalam status **Running**.
 
-## Security Vulnerabilities
+### 7. Buat Database Baru
+Akses database manager Anda (seperti phpMyAdmin atau aplikasi sejenis), kemudian buat database baru dengan nama:
+```text
+webto
+```
+*(Opsional) Jika proyek Anda memiliki file migrasi tabel, Anda bisa menjalankan perintah berikut untuk membuat struktur tabel secara otomatis:*
+```bash
+php artisan migrate
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 8. Jalankan Server Proyek
+Buka terminal dan jalankan server lokal Laravel menggunakan perintah berikut:
+```bash
+php artisan serve
+```
+*Catatan: Buka terminal baru (terpisah) di folder yang sama, lalu jalankan perintah di bawah ini untuk mengompilasi aset frontend secara real-time:*
+```bash
+npm run dev
+```
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# webto
+### 9. Akses Aplikasi
+Setelah semua server berjalan dengan baik, buka web browser pilihan Anda dan akses aplikasi melalui tautan berikut:
+👉 **[http://localhost:8000](http://localhost:8000)**
