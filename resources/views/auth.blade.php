@@ -17,8 +17,14 @@
                 <p>Silakan masukkan kredensial Anda untuk melanjutkan</p>
             </div>
 
-            <form id="loginForm" action="{}" method="POST" class="auth-form">
+            <form id="loginForm" action="{{ route('auth.post') }}" method="POST" class="auth-form">
                 @csrf
+
+                @if($errors->any())
+                    <div class="alert alert-danger" style="color: red; font-size: 0.9em; margin-bottom: 15px;">
+                        {{ $errors->first() }}
+                    </div>
+                @endif
 
                 <div class="form-group">
                     <label class="form-label" for="email">Email</label>

@@ -15,14 +15,18 @@
 
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-1">
-                <li class="nav-item"><a class="nav-link" href="#hero">Beranda</a></li>
-                <li class="nav-item"><a class="nav-link" href="#layanan">Layanan</a></li>
-                <li class="nav-item"><a class="nav-link" href="#tentang">Tentang</a></li>
-                <li class="nav-item"><a class="nav-link" href="#kontak">Kontak</a></li>
+                <li class="nav-item"><a class="nav-link active" href="{{ route('landing') }}">Support</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>
                 <li class="nav-item ms-lg-2">
-                    <a class="btn btn-login px-4 rounded-pill" href="{{ route('auth') }}" id="btnLogin">
-                        <i class="fas fa-sign-in-alt me-1"></i> Login
-                    </a>
+                    @if(Auth::check() || Session::has('logged_in'))
+                        <a class="btn btn-login px-4 rounded-pill" href="{{ route('logout') }}" id="btnLogout">
+                            <i class="fas fa-sign-out-alt me-1"></i> Logout
+                        </a>
+                    @else
+                        <a class="btn btn-login px-4 rounded-pill" href="{{ route('auth') }}" id="btnLogin">
+                            <i class="fas fa-sign-in-alt me-1"></i> Login
+                        </a>
+                    @endif
                 </li>
             </ul>
         </div>
@@ -92,92 +96,7 @@
     </div>
 </section>
 
-<!-- ===== KONTAK ===== -->
-<section class="py-3 bg-light" id="kontak">
-    <div class="container py-5">
-        <div class="row g-5">
-            <!-- Info Kontak -->
-            <div class="col-lg-5">
-                <p class="text-primary fw-semibold text-uppercase" style="letter-spacing:2px; font-size:.85rem;">Hubungi
-                    Kami</p>
-                <h2 class="fw-bold mb-3">Ada Pertanyaan?</h2>
-                <p class="text-muted mb-4">
-                    Isi formulir di samping atau hubungi kami langsung. Tim kami akan merespon dalam 1x24 jam.
-                </p>
 
-                <div class="d-flex align-items-start gap-3 mb-3">
-                    <div class="lp-contact-icon"><i class="fas fa-location-dot"></i></div>
-                    <div>
-                        <h6 class="fw-semibold mb-0">Alamat</h6>
-                        <p class="text-muted mb-0" style="font-size:.9rem;">Jl. Teknologi No. 42, Jakarta Selatan</p>
-                    </div>
-                </div>
-                <div class="d-flex align-items-start gap-3 mb-3">
-                    <div class="lp-contact-icon"><i class="fas fa-phone"></i></div>
-                    <div>
-                        <h6 class="fw-semibold mb-0">Telepon</h6>
-                        <p class="text-muted mb-0" style="font-size:.9rem;">+62 21 1234 5678</p>
-                    </div>
-                </div>
-                <div class="d-flex align-items-start gap-3 mb-4">
-                    <div class="lp-contact-icon"><i class="fas fa-envelope"></i></div>
-                    <div>
-                        <h6 class="fw-semibold mb-0">Email</h6>
-                        <p class="text-muted mb-0" style="font-size:.9rem;">hello@webto.id</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Form Kontak -->
-            <div class="col-lg-7">
-                <div class="lp-form-card">
-                    <form id="contactForm">
-                        @csrf
-                        <div class="row g-3">
-                            <div class="col-sm-6">
-                                <label class="form-label fw-medium" for="contactName">Nama Lengkap</label>
-                                <input type="text" class="form-control" id="contactName" name="name"
-                                    placeholder="Nama Anda" required>
-                            </div>
-                            <div class="col-sm-6">
-                                <label class="form-label fw-medium" for="contactEmail">Email</label>
-                                <input type="email" class="form-control" id="contactEmail" name="email"
-                                    placeholder="nama@email.com" required>
-                            </div>
-                            <div class="col-sm-6">
-                                <label class="form-label fw-medium" for="contactPhone">No. Telepon</label>
-                                <input type="tel" class="form-control" id="contactPhone" name="phone"
-                                    placeholder="+62 812 xxxx xxxx">
-                            </div>
-                            <div class="col-sm-6">
-                                <label class="form-label fw-medium" for="contactSubject">Subjek</label>
-                                <select class="form-select" id="contactSubject" name="subject" required>
-                                    <option value="" disabled selected>Pilih subjek</option>
-                                    <option value="general">Pertanyaan Umum</option>
-                                    <option value="partnership">Kerjasama</option>
-                                    <option value="support">Bantuan Teknis</option>
-                                    <option value="pricing">Informasi Harga</option>
-                                    <option value="other">Lainnya</option>
-                                </select>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label fw-medium" for="contactMessage">Pesan</label>
-                                <textarea class="form-control" id="contactMessage" name="message" rows="5"
-                                    placeholder="Ceritakan kebutuhan Anda..." required></textarea>
-                            </div>
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-primary px-5 py-2 rounded-pill"
-                                    id="btnSubmitContact">
-                                    <i class="fas fa-paper-plane me-2"></i> Kirim Pesan
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- ===== FOOTER ===== -->
 <footer class="footer text-white">
