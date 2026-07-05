@@ -16,7 +16,7 @@
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-1">
                 <li class="nav-item"><a class="nav-link active" href="{{ route('landing') }}">Support</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>
+{{--                <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>--}}
                 <li class="nav-item ms-lg-2">
                     @if(Auth::check() || Session::has('logged_in'))
                         <a class="btn btn-login px-4 rounded-pill" href="{{ route('logout') }}" id="btnLogout">
@@ -96,6 +96,61 @@
     </div>
 </section>
 
+<!-- ===== SUPPORT ===== -->
+<section class="py-3 bg-light" id="support">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="text-center mb-5">
+                    <p class="text-primary fw-semibold text-uppercase" style="letter-spacing:2px; font-size:.85rem;">Bantuan Teknis</p>
+                    <h2 class="fw-bold">Butuh Bantuan?</h2>
+                    <p class="text-muted mt-3">Silakan ajukan tiket dukungan (Support Case) melalui form di bawah ini. Tim kami akan segera membantu Anda.</p>
+                </div>
+
+                <div class="lp-form-card p-4 bg-white rounded shadow-sm">
+                    <form action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8&orgId=00DdM00000vzVm1" method="POST">
+                        <input type="hidden" name="orgid" value="00DdM00000vzVm1">
+                        <input type="hidden" name="retURL" value="{{ route('landing') }}">
+                        
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <label class="form-label fw-medium" for="name">Nama Lengkap</label>
+                                <input type="text" class="form-control" id="name" maxlength="80" name="name"
+                                       placeholder="Nama Anda" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-label fw-medium" for="email">Email</label>
+                                <input type="email" class="form-control" id="email" maxlength="80" name="email"
+                                       placeholder="nama@email.com" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-label fw-medium" for="phone">No. Telepon</label>
+                                <input type="tel" class="form-control" id="phone" maxlength="40" name="phone"
+                                       placeholder="+62 812 xxxx xxxx">
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-label fw-medium" for="subject">Subjek</label>
+                                <input type="text" class="form-control" id="subject" maxlength="80" name="subject"
+                                       placeholder="Ringkasan Masalah" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-medium" for="description">Deskripsi Masalah</label>
+                                <textarea class="form-control" id="description" name="description" rows="5"
+                                          placeholder="Jelaskan secara detail kendala atau pertanyaan Anda..." required></textarea>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <button type="submit" name="submit" class="btn btn-primary px-5 py-2 rounded-pill w-100">
+                                    <i class="fas fa-paper-plane me-2"></i> Kirim Tiket Dukungan
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 
 <!-- ===== FOOTER ===== -->
@@ -132,7 +187,7 @@
                 <ul class="list-unstyled lp-footer-links">
                     <li><a href="#" class="text-white-50 text-decoration-none">Pusat Bantuan</a></li>
                     <li><a href="#" class="text-white-50 text-decoration-none">Dokumentasi</a></li>
-                    <li><a href="#kontak" class="text-white-50 text-decoration-none">Kontak</a></li>
+                    <li><a href="{{route("contact")}}" class="text-white-50 text-decoration-none">Hubungi Kami</a></li>
                 </ul>
             </div>
             <div class="col-6 col-lg-2">

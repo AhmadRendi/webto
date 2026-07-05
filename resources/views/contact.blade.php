@@ -16,7 +16,7 @@
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-1">
                 <li class="nav-item"><a class="nav-link" href="{{ route('landing') }}">Support</a></li>
-                <li class="nav-item"><a class="nav-link active" href="{{ route('contact') }}">Contact</a></li>
+{{--                <li class="nav-item"><a class="nav-link active" href="{{ route('contact') }}">Contact</a></li>--}}
                 <li class="nav-item ms-lg-2">
                     @if(Auth::check() || Session::has('logged_in'))
                         <a class="btn btn-login px-4 rounded-pill" href="{{ route('logout') }}" id="btnLogout">
@@ -71,7 +71,11 @@
             <!-- Form Kontak -->
             <div class="col-lg-7">
                 <div class="lp-form-card p-4 bg-white rounded shadow-sm">
-                    <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DdM00000vzVm1" method="POST">
+                    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(typeof submitted !== 'undefined' && submitted) { handleSuccess(); }"></iframe>
+                    <div id="success-notification" class="alert alert-success" style="display: none;">
+                        <i class="fas fa-check-circle me-2"></i> Request berhasil dikirim! Tim kami akan segera menghubungi Anda.
+                    </div>
+                    <form id="contact-form" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DdM00000vzVm1" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
                         <input type="hidden" name="oid" value="00DdM00000vzVm1">
                         <input type="hidden" name="retURL" value="{{ route('landing') }}">
 
@@ -790,6 +794,28 @@
 @include('template/Footer')
 
 <script>
+    var submitted = false;
+    
+    function handleSuccess() {
+        // Tampilkan notifikasi
+        $('#success-notification').fadeIn();
+        
+        // Reset form
+        $('#contact-form')[0].reset();
+        
+        // Reset Select2 jika ada
+        if($.fn.select2) {
+            $('#industry, #state_code, #country_code').val(null).trigger('change');
+        }
+        
+        submitted = false;
+        
+        // Sembunyikan notifikasi setelah 5 detik
+        setTimeout(function() {
+            $('#success-notification').fadeOut();
+        }, 5000);
+    }
+
     $(document).ready(function() {
         $('#industry, #state_code, #country_code').select2({
             theme: 'bootstrap-5',
