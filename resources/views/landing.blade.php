@@ -51,7 +51,7 @@
                     semua dalam satu tempat.
                 </p>
                 <div class="d-flex gap-3 flex-wrap">
-                    <a href="#kontak" class="btn btn-primary btn-lg px-4 rounded-pill">
+                    <a href="{{route("contact")}}" class="btn btn-primary btn-lg px-4 rounded-pill">
                         Hubungi Kami <i class="fas fa-arrow-right ms-2"></i>
                     </a>
                     <a href="#layanan" class="btn btn-outline-secondary btn-lg px-4 rounded-pill">
@@ -111,7 +111,7 @@
                     <form action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8&orgId=00DdM00000vzVm1" method="POST">
                         <input type="hidden" name="orgid" value="00DdM00000vzVm1">
                         <input type="hidden" name="retURL" value="{{ route('landing') }}">
-                        
+
                         <div class="row g-3">
                             <div class="col-sm-6">
                                 <label class="form-label fw-medium" for="name">Nama Lengkap</label>
